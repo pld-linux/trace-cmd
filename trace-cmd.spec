@@ -33,7 +33,7 @@ Graphical frontend for trace-cmd.
 sed -i -e 's#$(prefix)/share/trace-cmd/#$(prefix)/%{_lib}/trace-cmd/#g' Makefile
 
 %build
-%{__make} all gui doc \
+%{__make} trace_plugin_dir all gui doc \
 	CC="%{__cc} %{rpmcppflags} %{rpmcflags} %{rpmldflags}" \
 	V=1 \
 	prefix=%{_prefix}
@@ -41,7 +41,12 @@ sed -i -e 's#$(prefix)/share/trace-cmd/#$(prefix)/%{_lib}/trace-cmd/#g' Makefile
 %install
 rm -rf $RPM_BUILD_ROOT
 
+# prevent trace_plugin_dir from being updated
+sed -i -e 's#trace-util.o: trace_plugin_dir##g' Makefile
+sed -i -e 's#= trace_plugin_dir tc_version.h#= tc_version.h#g' Makefile
+
 %{__make} install install_gui install_doc \
+	V=1 \
 	prefix=$RPM_BUILD_ROOT%{_prefix}
 
 %clean
