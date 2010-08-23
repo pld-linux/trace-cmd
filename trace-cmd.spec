@@ -30,18 +30,18 @@ Graphical frontend for trace-cmd.
 %prep
 %setup -q
 
-sed -i -e 's#$(prefix)/share/trace-cmd/#$(DESTDIR)%{_libdir}/trace-cmd/#g' Makefile
+sed -i -e 's#$(prefix)/share/trace-cmd/#$(prefix)/%{_lib}/trace-cmd/#g' Makefile
 
 %build
-%{__make} all gui doc\
+%{__make} all gui doc \
 	CC="%{__cc} %{rpmcppflags} %{rpmcflags} %{rpmldflags}" \
-	V=1
+	V=1 \
+	prefix=%{_prefix}
 
 %install
 rm -rf $RPM_BUILD_ROOT
 
 %{__make} install install_gui install_doc \
-	DESTDIR=$RPM_BUILD_ROOT \
 	prefix=$RPM_BUILD_ROOT%{_prefix}
 
 %clean
