@@ -3,14 +3,15 @@
 #
 Summary:	trace-cmd - interacts with Ftrace Linux kernel internal tracer
 Name:		trace-cmd
-Version:	1.0.0
+Version:	1.0.5
 Release:	1
 License:	GPLv2 and LGPLv2.1
 Group:		Development/Tools
-URL:		http://ftp.kernel.org/pub/linux/kernel/people/jkacur/trace-cmd/
-Source0:	http://ftp.kernel.org/pub/linux/kernel/people/jkacur/trace-cmd/%{name}-%{version}.tar.bz2
-# Source0-md5:	a15a33f5835955ad0704f2f29d6c5c24
+URL:		http://git.kernel.org/?p=linux/kernel/git/rostedt/trace-cmd.git;a=summary
+Source0:	ftp://kernel.org/pub/linux/analysis/trace-cmd/%{name}-%{version}.tar.bz2
+# Source0-md5:	251432a677c4498f2428654d9b6ec7fd
 BuildRequires:	asciidoc
+BuildRequires:	docbook-style-xsl
 BuildRequires:	gtk+2-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -30,6 +31,7 @@ Graphical frontend for trace-cmd.
 %prep
 %setup -q
 
+sed -i -e 's#MANPAGE_DOCBOOK_XSL =.*#MANPAGE_DOCBOOK_XSL = /usr/share/sgml/docbook/xsl-stylesheets/manpages/docbook.xsl#g' Documentation/Makefile
 sed -i -e 's#$(prefix)/share/trace-cmd/#$(prefix)/%{_lib}/trace-cmd/#g' Makefile
 
 %build
