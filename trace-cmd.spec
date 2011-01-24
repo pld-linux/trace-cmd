@@ -11,8 +11,10 @@ URL:		http://git.kernel.org/?p=linux/kernel/git/rostedt/trace-cmd.git;a=summary
 Source0:	ftp://kernel.org/pub/linux/analysis/trace-cmd/%{name}-%{version}.tar.bz2
 # Source0-md5:	251432a677c4498f2428654d9b6ec7fd
 BuildRequires:	asciidoc
+BuildRequires:	docbook-dtd45-xml
 BuildRequires:	docbook-style-xsl
 BuildRequires:	gtk+2-devel
+BuildRequires:	pkgconfig
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
