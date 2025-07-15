@@ -49,7 +49,7 @@ Obsługa wtyczek trace-cmd napisanych w Pythonie (3.x).
 
 %prep
 %setup -q -n %{name}-v%{version}
-%patch0 -p1
+%patch -P0 -p1
 
 %{__sed} -i -e '1s,/usr/bin/env python2,%{__python},' python/event-viewer.py
 
