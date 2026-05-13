@@ -9,14 +9,3 @@
  
  export LIBS TRACE_LIBS
  export LIBTRACECMD_DIR
---- trace-cmd-v3.2/python/ctracecmd.i.orig	2023-06-07 22:21:00.000000000 +0200
-+++ trace-cmd-v3.2/python/ctracecmd.i	2023-09-17 22:31:17.736449648 +0200
-@@ -239,6 +239,8 @@ static int python_callback(struct trace_
- 
- %ignore trace_seq_vprintf;
- %ignore vpr_stat;
-+%ignore tep_plugin_kvm_get_func;
-+%ignore tep_plugin_kvm_put_func;
- 
- /* SWIG can't grok these, define them to nothing */
- #define __trace

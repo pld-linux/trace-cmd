@@ -1,28 +1,29 @@
 Summary:	trace-cmd - interact with Ftrace Linux kernel internal tracer
 Summary(pl.UTF-8):	trace-cmd - interakcja z Ftrace - wewnętrznym systemem śledzenia jądra Linuksa
 Name:		trace-cmd
-Version:	3.2
+Version:	3.4
 Release:	1
 License:	GPL v2
 Group:		Development/Tools
 Source0:	https://git.kernel.org/pub/scm/utils/trace-cmd/trace-cmd.git/snapshot/%{name}-v%{version}.tar.gz
-# Source0-md5:	aebecc253f0991368fe8d88c20b9713c
+# Source0-md5:	62c36c61f625116343ba0fe8cc965672
 Patch0:		%{name}-link.patch
 URL:		https://www.trace-cmd.org/
 BuildRequires:	asciidoc
 BuildRequires:	audit-libs-devel
 BuildRequires:	docbook-dtd45-xml
 BuildRequires:	docbook-style-xsl
-BuildRequires:	libtraceevent-devel >= 1.5
-BuildRequires:	libtracefs-devel >= 1.6
+BuildRequires:	gcc >= 5:3.2
+BuildRequires:	libtraceevent-devel >= 1.9
+BuildRequires:	libtracefs-devel >= 1.8
 BuildRequires:	pkgconfig
 BuildRequires:	python3-devel >= 1:3.2
 BuildRequires:	rpmbuild(macros) >= 1.673
 BuildRequires:	swig-python >= 2
 BuildRequires:	zlib-devel
 BuildRequires:	zstd-devel >= 1.4.0
-Requires:	libtraceevent >= 1.5
-Requires:	libtracefs >= 1.6
+Requires:	libtraceevent >= 1.9
+Requires:	libtracefs >= 1.8
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -103,5 +104,5 @@ rm -rf $RPM_BUILD_ROOT
 %files python
 %defattr(644,root,root,755)
 %dir %{_libdir}/%{name}/python
-%attr(755,root,root) %{_libdir}/%{name}/python/ctracecmd.so
+%{_libdir}/%{name}/python/ctracecmd.so
 %{_libdir}/%{name}/python/tracecmd.py
